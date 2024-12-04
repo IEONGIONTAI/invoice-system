@@ -1,70 +1,67 @@
-# Getting Started with Create React App
+# **Invoice Management System**
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## **專案簡介**
 
-## Available Scripts
+本專案是一個基於 React 和 Node.js 的收據管理系統，提供以下功能：
 
-In the project directory, you can run:
+- 新增收據
+- 管理與查詢收據
+- 收據打印與導出 PDF
+- 多種圖表統計分析（如條形圖、圓餅圖、折線圖）
+- 自動生成收據號碼
+- 使用者登入與登出（包含 20 分鐘無操作自動登出功能）
+- 可自訂全局設定（如登出計時器時間、經手人管理）
 
-### `npm start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## **功能列表**
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### 1. **登入系統**
 
-### `npm test`
+- 使用帳號密碼登入，保存登入狀態於 LocalStorage。
+- 20 分鐘無操作自動登出，並支持重置計時器。
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 2. **收據管理**
 
-### `npm run build`
+- **新增收據**：
+  - 支援自動生成收據號碼。
+  - 可輸入金額、描述、經手人等欄位。
+- **查詢與刪除收據**：
+  - 支援分頁顯示，每頁 10 筆數據。
+  - 可按條件查詢收據，並支持刪除功能。
+- **打印與導出 PDF**：
+  - 點擊操作按鈕即可打印單張收據或導出為 PDF。
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### 3. **Dashboard 圖表分析**
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- 多種圖表展示（使用 Chart.js）：
+  - **條形圖**：按月統計收據數量。
+  - **圓餅圖**：統計金額分類占比。
+  - **折線圖**：顯示收入趨勢。
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### 4. **全局設定**
 
-### `npm run eject`
+- **登出計時器**：用戶可自訂自動登出時間。
+- **經手人管理**：
+  - 支援新增、刪除經手人，並應用於新增收據。
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+---
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## **技術棧**
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- **前端**：
+  - React.js
+  - TailwindCSS
+  - Chart.js
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+---
 
-## Learn More
+## **如何安裝與運行**
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### **1. 前端**
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```bash
+cd frontend
+npm install
+npm start
+```
