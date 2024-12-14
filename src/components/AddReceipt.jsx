@@ -15,10 +15,16 @@ const AddReceipt = () => {
     amount: "",
     notes: "",
     handler: "",
+    buyFrom: "",
+    cost: "",
+    category: "",
+    origin: "",
+    weight: "",
   });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+    console.log(name, value);
     setFormData({ ...formData, [name]: value });
   };
 
@@ -35,84 +41,165 @@ const AddReceipt = () => {
     setLoading(true);
   };
 
+  const handleAutoGenNumber = () => {
+    setFormData({ ...formData, receiptNo: 123456 });
+  };
+
   return (
     <div>
-      <h1 className="text-2xl font-bold mb-4">新增收據</h1>
+      <h1 className="text-2xl font-bold mb-4">新增收據 #0001</h1>
       <form
         className="bg-white p-6 rounded shadow space-y-4"
         onSubmit={handleSubmit}
       >
         <div>
-          <label className="block font-medium mb-1">收據號碼</label>
-          <input
-            type="text"
-            name="receiptNo"
-            className="w-full border rounded p-2"
-            onChange={handleChange}
-          />
+          <div className="grid grid-cols-2 gap-4 gap-y-2">
+            <div>
+              <label className="block text-sm/6 font-medium text-gray-900">
+                收據號碼
+              </label>
+              <div className="flex space-x-4">
+                <input
+                  type="text"
+                  required
+                  name="receiptNo"
+                  className="w-full border rounded p-2"
+                  onChange={handleChange}
+                ></input>
+                <button
+                  onClick={handleAutoGenNumber}
+                  type="button"
+                  className="bg-blue-500 text-white text-sm/6 text-nowrap py-2 px-4 rounded hover:bg-blue-600"
+                >
+                  自動生成
+                </button>
+              </div>
+            </div>
+
+            <div>
+              <label className="block text-sm/6 font-medium text-gray-900">
+                購自
+              </label>
+              <input
+                type="text"
+                name="buyFrom"
+                className="w-full border rounded p-2"
+                onChange={handleChange}
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm/6 font-medium text-gray-900">
+                型號
+              </label>
+              <input
+                type="text"
+                name="model"
+                className="w-full border rounded p-2"
+                onChange={handleChange}
+              />
+            </div>
+            <div>
+              <label className="block text-sm/6 font-medium text-gray-900">
+                購貨成本
+              </label>
+              <input
+                type="text"
+                name="cost"
+                className="w-full border rounded p-2"
+                onChange={handleChange}
+              />
+            </div>
+            <div>
+              <label className="block text-sm/6 font-medium text-gray-900">
+                貨物類別
+              </label>
+              <input
+                type="text"
+                name="category"
+                className="w-full border rounded p-2"
+                onChange={handleChange}
+              />
+            </div>
+            <div>
+              <label className="block text-sm/6 font-medium text-gray-900">
+                來源地
+              </label>
+              <input
+                type="text"
+                name="origin"
+                className="w-full border rounded p-2"
+                onChange={handleChange}
+              />
+            </div>
+            <div>
+              <label className="block text-sm/6 font-medium text-gray-900">
+                重量
+              </label>
+              <input
+                type="text"
+                placeholder="ex.50g"
+                name="weight"
+                className="w-full border rounded p-2"
+                onChange={handleChange}
+              />
+            </div>
+            <div>
+              <label className="block text-sm/6 font-medium text-gray-900">
+                金額
+              </label>
+              <input
+                type="number"
+                name="amount"
+                className="w-full border rounded p-2"
+                onChange={handleChange}
+              />
+            </div>
+            <div>
+              <label className="block text-sm/6 font-medium text-gray-900">
+                日期
+              </label>
+              <input
+                type="date"
+                name="date"
+                className="w-full border rounded p-2"
+                onChange={handleChange}
+              />
+            </div>
+            <div>
+              <label className="block text-sm/6 font-medium text-gray-900">
+                經手人
+              </label>
+              <select
+                name="handler"
+                className={`w-full border p-2 rounded ${
+                  error ? "border-red-500" : "border-gray-300"
+                }`}
+                onChange={handleChange}
+              >
+                <option value="">請選擇經手人</option>
+                {handlers.map((handler) => {
+                  return <option value={handler}>{handler}</option>;
+                })}
+              </select>
+              {error && (
+                <p className="text-red-500 text-sm mt-1">請選擇一位經手人！</p>
+              )}
+            </div>
+          </div>
+          <div>
+            <label className="block text-sm/6 font-medium text-gray-900">
+              備註
+            </label>
+            <textarea
+              type="text"
+              name="notes"
+              className="w-full border rounded p-2"
+              onChange={handleChange}
+            />
+          </div>
         </div>
-        <div>
-          <label className="block font-medium mb-1">日期</label>
-          <input
-            type="date"
-            name="date"
-            className="w-full border rounded p-2"
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <label className="block font-medium mb-1">商品描述</label>
-          <textarea
-            name="description"
-            className="w-full border rounded p-2"
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <label className="block font-medium mb-1">型號</label>
-          <input
-            type="text"
-            name="model"
-            className="w-full border rounded p-2"
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <label className="block font-medium mb-1">金額</label>
-          <input
-            type="number"
-            name="amount"
-            className="w-full border rounded p-2"
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <label className="block font-medium mb-1">經手人*</label>
-          <select
-            name="handler"
-            className={`w-full border p-2 rounded ${
-              error ? "border-red-500" : "border-gray-300"
-            }`}
-            onChange={handleChange}
-          >
-            <option value="">請選擇經手人</option>
-            {handlers.map((handler) => {
-              return <option value={handler}>{handler}</option>;
-            })}
-          </select>
-          {error && (
-            <p className="text-red-500 text-sm mt-1">請選擇一位經手人！</p>
-          )}
-        </div>
-        <div>
-          <label className="block font-medium mb-1">備註</label>
-          <input
-            type="text"
-            name="notes"
-            className="w-full border rounded p-2"
-            onChange={handleChange}
-          />
-        </div>
+
         <div className="flex space-x-4 items-center">
           {!loading ? (
             <button
